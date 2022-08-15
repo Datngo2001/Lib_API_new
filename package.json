@@ -1,0 +1,40 @@
+{
+  "name": "lib_api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "npm run prod",
+    "prod": "cross-env NODE_ENV=production npm-run-all build server",
+    "dev": "cross-env NODE_ENV=development npm-run-all build server",
+    "server": "node ./dist/main.js",
+    "transpile": "babel ./src --out-dir ./dist",
+    "clean": "rimraf ./dist",
+    "build": "npm-run-all clean transpile",
+    "watch": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.19",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "nodemonConfig": { 
+    "exec": "npm run dev",
+    "watch": ["src/*"],
+    "ignore": ["**/__tests__/**", "*.test.js", "*.spec.js"]
+  }
+}
